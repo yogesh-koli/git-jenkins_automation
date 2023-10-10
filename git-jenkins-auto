@@ -60,7 +60,7 @@ pipeline {
                     if (tagName) {
                         sh '''
                             cd /dir2/
-                            echo $TAG_NAME
+                            echo $tagName
                             git tag -a $tagName -m "$tagName"
                             git pull $GIT_URL
                             git push $GIT_URL --tags
