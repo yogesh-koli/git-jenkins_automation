@@ -19,12 +19,14 @@ pipeline {
                         whoami
                         cd /dir2/
                         ls -lsrt
-                        git config --global --add safe.directory /dir2
                         git branch
                         git add git-jenkins-auto
-                        git commit -m "$YOUR_MSG"
-                        git pull origin master
-                    '''
+                       '''
+                    if (git commit -m "$YOUR_MSG" =="") {
+                        sh 'git pull origin master'
+                    } else {
+                        sh 'git pull $GIT_URL'
+                    
                  //   if (BRANCH_NAME == "master") {
                  //       sh 'git pull origin master'
                 //    } else {
