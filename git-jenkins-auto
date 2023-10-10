@@ -18,7 +18,7 @@ pipeline {
                         whoami
                         cd /dir2/
                         ls -lsrt
-                        git config --global --add safe.directory /yogi/git_automation
+                        git config --global --add safe.directory /dir2
                         git branch
                         git stash
                     '''
