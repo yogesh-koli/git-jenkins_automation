@@ -3,11 +3,12 @@ pipeline {
     parameters {
         string(name: 'TAG_NAME', defaultValue: '', description: 'Enter the tag name')
         string(name: 'BRANCH_NAME', defaultValue: 'master', description: 'Enter the branch name')
+        string(name: 'YOUR_MSG', defaultValue: '', description: 'Enter the msg')
     }
 
     environment {
-        GIT_HOME ="/home/beast9949/git"
-        GIT_URL ="https://beast9949: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@github.com/beast9949/git_automation.git"
+        GIT_HOME = "/home/yogesh-koli/git"
+        GIT_URL = "https://yogesh-koli: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@github.com/yogesh-koli/git-jenkins_automation"
     }
 
     stages {
@@ -16,27 +17,24 @@ pipeline {
                 script {
                     sh '''
                         whoami
-                        cd /yogi/git_automation
+                        cd /dir2/
                         ls -lsrt
-                        # git config --global --add safe.directory /yogi/git_automation
                         git branch
                         git stash
-                    '''
-
-                    if (BRANCH_NAME != "master" && BRANCH_NAME != "") {
-                        sh 'git pull'
-                    } else {
-                        sh "git pull origin $BRANCH_NAME"
+                       '''  
+                   if (BRANCH_NAME == "master") {
+                       sh 'git pull origin master'
+                   } else {
+                       sh "git pull $GIT_URL"
                     }
                 }
             }
         }
-
-        stage('Git checkout') {
+      stage('Git checkout') {
             steps {
                 script {
                     sh '''
-                        cd /yogi/git_automation
+                        cd /dir2/
                         if [ "$BRANCH_NAME" != "master" ]; then
                             git checkout $BRANCH_NAME
                         fi
@@ -48,7 +46,7 @@ pipeline {
         stage('Pull and push from GitHub (master Branch)') {
             steps {
                 sh '''
-                    cd /yogi/git_automation
+                    cd /dir2/
                     git pull origin master
                 '''
             }
@@ -59,14 +57,14 @@ pipeline {
                 script {
                     def tagName = params.TAG_NAME.trim()
 
-                    if (TAG_NAME) {
+                    if (tagName) {
                         sh '''
-                           cd /yogi/git_automation
-                           echo $TAG_NAME
-                           git tag -a $TAG_NAME -m "Version $TAG_NAME"
+                            cd /dir2/
+                            echo $tagName
+                            git tag -a $tagName -m "$tagName"
                             git pull $GIT_URL
-                           git push $GIT_URL --tags
-                         '''
+                            git push $GIT_URL --tags
+                        '''
                     } else {
                         error('Tag name not provided. Tagging aborted.')
                     }
@@ -77,7 +75,7 @@ pipeline {
         stage('Pull a tag') {
             steps {
                 sh '''
-                    cd /yogi/git_automation
+                    cd /dir2/
                     git fetch --tags
                     git checkout ${params.TAG_NAME}
                 '''
@@ -85,6 +83,3 @@ pipeline {
         }
     }
 }
-
-
-
