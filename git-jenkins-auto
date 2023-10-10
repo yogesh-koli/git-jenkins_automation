@@ -20,7 +20,6 @@ pipeline {
                         ls -lsrt
                         git config --global --add safe.directory /dir2
                         git branch
-                        git stash
                     '''
 
                         if (BRANCH_NAME == "master") {
