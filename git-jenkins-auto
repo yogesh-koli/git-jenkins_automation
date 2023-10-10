@@ -22,8 +22,10 @@ pipeline {
                         git branch
                         git add git-jenkins-auto
                        '''
-                    if (git commit -m "$YOUR_MSG" =="") {
-                        sh 'git pull origin master'
+                   if (YOUR_MSG == "") {
+                       sh "git commit -m 'YOUR_MSG'"
+                                       }
+                        sh ' git pull origin master'
                     } else {
                         sh 'git pull $GIT_URL'
                     
