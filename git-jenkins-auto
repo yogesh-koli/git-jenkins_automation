@@ -20,25 +20,17 @@ pipeline {
                         cd /dir2/
                         ls -lsrt
                         git branch
-                        git add git-jenkins-auto
-                       '''
-                   if (YOUR_MSG == "") {
-                       sh "git commit -m 'YOUR_MSG'"
-                                       }
-                        sh ' git pull origin master'
-                 } else {
-                        sh 'git pull $GIT_URL'
-                    
-                 //   if (BRANCH_NAME == "master") {
-                 //       sh 'git pull origin master'
-                //    } else {
-               //         sh "git pull $GIT_URL"
-             //       }
+                        git stash
+                       '''  
+                   if (BRANCH_NAME == "master") {
+                       sh 'git pull origin master'
+                   } else {
+                       sh "git pull $GIT_URL"
+                    }
                 }
             }
         }
-
-        stage('Git checkout') {
+      stage('Git checkout') {
             steps {
                 script {
                     sh '''
