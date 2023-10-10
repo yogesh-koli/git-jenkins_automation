@@ -16,7 +16,7 @@ pipeline {
                 script {
                     sh '''
                         whoami
-                        cd /dir2/git-jenkins-auto
+                        cd /dir2/
                         ls -lsrt
                         git config --global --add safe.directory /yogi/git_automation
                         git branch
@@ -36,7 +36,7 @@ pipeline {
             steps {
                 script {
                     sh '''
-                        cd /dir2/git-jenkins-auto
+                        cd /dir2/
                         if [ "$BRANCH_NAME" != "master" ]; then
                             git checkout $BRANCH_NAME
                         fi
@@ -48,7 +48,7 @@ pipeline {
         stage('Pull and push from GitHub (master Branch)') {
             steps {
                 sh '''
-                    cd /dir2/git-jenkins-auto
+                    cd /dir2/
                     git pull origin master
                 '''
             }
@@ -61,7 +61,7 @@ pipeline {
 
                     if (TAG_NAME) {
                         sh '''
-                           cd /dir2/git-jenkins-auto
+                           cd /dir2/
                            echo $TAG_NAME
                            git tag -a $TAG_NAME -m "$TAG_NAME"
                             git pull $GIT_URL
@@ -77,7 +77,7 @@ pipeline {
         stage('Pull a tag') {
             steps {
                 sh '''
-                    cd /dir2/git-jenkins-auto
+                    cd /dir2/
                     git fetch --tags
                     git checkout ${params.TAG_NAME}
                 '''
