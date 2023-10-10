@@ -3,6 +3,7 @@ pipeline {
     parameters {
         string(name: 'TAG_NAME', defaultValue: '', description: 'Enter the tag name')
         string(name: 'BRANCH_NAME', defaultValue: 'master', description: 'Enter the branch name')
+        string(name: 'YOUR_MSG', defaultValue: '', description: 'Enter the msg')
     }
 
     environment {
@@ -20,13 +21,15 @@ pipeline {
                         ls -lsrt
                         git config --global --add safe.directory /dir2
                         git branch
-                        git stash
+                        git add git-jenkins-auto
+                        git commit -m "$YOUR_MSG"
+                        git pull origin master
                     '''
-                    if (BRANCH_NAME == "master") {
-                        sh 'git pull origin master'
-                    } else {
-                        sh "git pull $GIT_URL"
-                    }
+                 //   if (BRANCH_NAME == "master") {
+                 //       sh 'git pull origin master'
+                //    } else {
+               //         sh "git pull $GIT_URL"
+             //       }
                 }
             }
         }
