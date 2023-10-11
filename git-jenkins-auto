@@ -21,6 +21,7 @@ pipeline {
                         ls -lsrt
                         git branch
                         git stash
+                        git pull $GIT_URL
                        '''  
                    if (BRANCH_NAME == "master") {
                        sh 'git pull origin master'
