@@ -17,7 +17,7 @@ pipeline {
                 script {
                     sh '''
                         whoami
-                        cd /dir2/
+                        cd /dir2/git-jenkins_automation
                         ls -lsrt
                         git branch
                         git stash
@@ -34,7 +34,7 @@ pipeline {
             steps {
                 script {
                     sh '''
-                        cd /dir2/
+                        cd /dir2/git-jenkins_automation
                         if [ "$BRANCH_NAME" != "master" ]; then
                             git checkout $BRANCH_NAME
                         fi
@@ -46,7 +46,7 @@ pipeline {
         stage('Pull and push from GitHub (master Branch)') {
             steps {
                 sh '''
-                    cd /dir2/
+                    cd /dir2/git-jenkins_automation
                     git pull origin master
                 '''
             }
@@ -59,7 +59,7 @@ pipeline {
 
                     if (tagName) {
                         sh '''
-                            cd /dir2/
+                            cd /dir2/git-jenkins_automation
                             echo $tagName
                             git tag -a $tagName -m "$tagName"
                             git pull $GIT_URL
@@ -75,7 +75,7 @@ pipeline {
         stage('Pull a tag') {
             steps {
                 sh '''
-                    cd /dir2/
+                    cd /dir2/git-jenkins_automation
                     git fetch --tags
                     git checkout ${params.TAG_NAME}
                 '''
