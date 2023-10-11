@@ -58,11 +58,11 @@ pipeline {
                 script {
                     def tagName = params.TAG_NAME.trim()
 
-                    if (tagName) {
+                    if (TAG_NAME) {
                         sh '''
                             cd /dir2/git-jenkins_automation
-                            echo $tagName
-                            git tag -a $tagName -m "$tagName"
+                            echo $TAG_NAME
+                            git tag -a $TAG_NAME -m "$TAG_NAME"
                             git pull $GIT_URL
                             git push $GIT_URL --tags
                         '''
