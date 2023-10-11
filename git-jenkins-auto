@@ -8,7 +8,7 @@ pipeline {
 
     environment {
         GIT_HOME = "/home/yogesh-koli/git"
-        GIT_URL = "https://yogesh-koli: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@github.com/yogesh-koli/git-jenkins_automation"
+        GIT_URL = "https://yogesh-koli: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@github.com/yogesh-koli/git-jenkins_automation"
     }
 
     stages {
