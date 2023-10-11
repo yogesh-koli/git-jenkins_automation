@@ -20,7 +20,6 @@ pipeline {
                         cd /dir2/git-jenkins_automation
                         ls -lsrt
                         git branch
-                        git config --global --add safe.directory /dir2/git-jenkins_automation
                         git stash
                        '''  
                    if (BRANCH_NAME == "master") {
