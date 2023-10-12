@@ -78,7 +78,7 @@ pipeline {
             steps {
                 sh '''
                     cd /dir2/git-jenkins_automation
-                    git fetch --tags
+                    git fetch $GIT_URL --tags
                     git checkout ${params.TAG_NAME}
                 '''
             }
