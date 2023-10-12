@@ -64,7 +64,7 @@ pipeline {
                             echo $TAG_NAME
                             git tag -a $TAG_NAME -m "$TAG_NAME"
                             git pull $GIT_URL
-                            git push https://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@github.com/yogesh-koli/git-jenkins_automation --tags
+                            git push https://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@github.com/yogesh-koli/git-jenkins_automation/git-jenkins-auto --tags
 
                         '''
                     } else {
