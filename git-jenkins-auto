@@ -64,7 +64,7 @@ pipeline {
                             echo $TAG_NAME
                             git tag -a $TAG_NAME -m "$TAG_NAME"
                             git pull $GIT_URL
-                            git push $GIT_URL --tags
+                            git push origin $TAG_NAME $GIT_URL 
 
                         '''
                     } else {
